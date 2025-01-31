@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Update Fruit!</h1>
+    <!-- The Edit form needs to make a PUT request to /fruits/:fruitID in the same way that the New form needs to make a POST request to /fruits. Remember, that browsers don’t support PUT requests, so we will use the same method-override middleware as we did with the delete route. We’ll append ?_method=PUT to the end of our action URL:  -->
+    <form action="/fruits/<%=fruit._id%>?_method=PUT" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" value="<%= fruit.name %>"/>
+
+        <label for="isReadyToEat">Ready to Eat?</label>
+        <input type="checkbox" name="isReadyToEat" <% if (fruit.isReadyToEat) { %>checked<% } %> >
+
+
+        <button type="submit">Update Fruit</button>
+    </form>
+    <a href="/fruits">Fruits Index</a>
+</body>
+
+</html>

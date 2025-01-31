@@ -1,0 +1,38 @@
+<!-- views/fruits/show.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        <%= fruit.name %>
+    </title> <!-- Dynamic title based on fruit name -->
+</head>
+
+<body>
+    <h1>
+        <%= fruit.name %>
+    </h1> <!-- Display fruit name -->
+    <!-- Add more details about the fruit here -->
+    <!-- Conditional rendering based on fruit's readiness -->
+    <% if (fruit.isReadyToEat) { %>
+        <p>This fruit is ready to eat!</p>
+        <% } else { %>
+            <p>This fruit is not ready to eat!</p>
+            <% } %>
+    
+    <!-- Normally, forms only support GET or POST methods, but we want to send a DELETE request. To achieve this, we use a query parameter ?_method=DELETE in the action URL. This tricks our server into treating the POST request as a DELETE request, thanks to the method-override middleware we set up in server.js -->
+    <form action="/fruits/<%= fruit._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete <%= fruit.name %> </button>
+    </form>
+
+    <a href="/fruits/<%= fruit._id %>/edit">Edit <%= fruit.name %></a>
+    <br>
+    <a href="/fruits">Back to Fruits</a>
+
+
+</body>
+
+</html>
